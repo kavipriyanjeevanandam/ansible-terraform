@@ -4,7 +4,7 @@
   become: yes # To run tasks with sudo
   vars:
     git_repo_url: "https://github.com/kavipriyanjeevanandam/ansible-terraform.git"
-    terraform_project_path: "~/terraform/"
+    terraform_project_path: "/home/ec2-user/terraform/"
 
   tasks:
     - name: Clone Terraform Git repository
