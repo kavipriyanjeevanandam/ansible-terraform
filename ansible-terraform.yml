@@ -19,11 +19,6 @@
         name: terraform
         state: present
 
-    - name: Set AWS Access Keys as Environment Variables
-      set_fact:
-        AWS_ACCESS_KEY_ID: "AKIAWQNJHQB6GCWKXAM6"
-        AWS_SECRET_ACCESS_KEY: "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"
-
     - name: Clone Terraform Git repository
       git:
         repo: "{{ git_repo_url }}"
