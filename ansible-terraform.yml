@@ -1,10 +1,7 @@
 ---
-- name: Pull Terraform files from Git and Run Terraform Commands
+- name: Pull Terraform files from Git, Install Terraform and AWS CLI, and Run Terraform Commands
   hosts: localhost
-  vars:
-    git_repo_url: "https://github.com/kavipriyanjeevanandam/ansible-terraform.git"
-    terraform_project_path: "~/terraform/"
-
+  become: yes # To run tasks with sudo
   tasks:
     - name: Install yum-utils
       yum:
@@ -19,18 +16,15 @@
         name: terraform
         state: present
 
-    - name: Clone Terraform Git repository
-      git:
-        repo: "{{ git_repo_url }}"
-        dest: "{{ terraform_project_path }}"
-        update: yes
+    - name: Install AWS CLI dependencies
+      yum:
+        name: unzip
+        state: present
 
-    - name: Initialize Terraform
-      command: "terraform init"
-      args:
-        chdir: "{{ terraform_project_path }}"
-
-    - name: Apply Terraform Configuration
-      command: "terraform apply -auto-approve"
+    - name: Download and install AWS CLI
+      shell: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
       args:
         chdir: "{{ terraform_project_path }}"
