@@ -27,4 +27,4 @@
         unzip awscliv2.zip
         sudo ./aws/install
       args:
-        chdir: "{{ terraform_project_path }}"
+        chdir: "~/"
