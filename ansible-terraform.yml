@@ -1,0 +1,41 @@
+---
+- name: Pull Terraform files from Git and Run Terraform Commands
+  hosts: localhost
+  vars:
+    git_repo_url: "https://github.com/kavipriyanjeevanandam/ansible-terraform.git"
+    terraform_project_path: "~/terraform/"
+
+  tasks:
+    - name: Install yum-utils
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: Add HashiCorp repository
+      shell: "sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo"
+
+    - name: Install Terraform
+      yum:
+        name: terraform
+        state: present
+
+    - name: Set AWS Access Keys as Environment Variables
+      set_fact:
+        AWS_ACCESS_KEY_ID: "{{ aws_access_key }}"
+        AWS_SECRET_ACCESS_KEY: "{{ aws_secret_key }}"
+
+    - name: Clone Terraform Git repository
+      git:
+        repo: "{{ git_repo_url }}"
+        dest: "{{ terraform_project_path }}"
+        update: yes
+
+    - name: Initialize Terraform
+      command: "terraform init"
+      args:
+        chdir: "{{ terraform_project_path }}"
+
+    - name: Apply Terraform Configuration
+      command: "terraform apply -auto-approve"
+      args:
+        chdir: "{{ terraform_project_path }}"
