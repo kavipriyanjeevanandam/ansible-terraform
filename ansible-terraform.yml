@@ -2,8 +2,7 @@
 - name: Pull Terraform files from Git, Install Terraform and AWS CLI, and Run Terraform Commands
   hosts: localhost
   become: yes # To run tasks with sudo
-  become_method: sudo
-  become_user: ec2-user
+
   tasks:
     - name: Install yum-utils
       yum:
@@ -28,5 +27,6 @@
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip awscliv2.zip
         sudo ./aws/install --update
+      become_user: ec2-user
       args:
         chdir: "/home/ec2-user/terraform"
