@@ -1,7 +1,6 @@
 ---
 - name: Pull Terraform files from Git, Install Terraform and AWS CLI, and Run Terraform Commands
   hosts: localhost
-  become: yes # To run tasks with sudo
   vars:
     git_repo_url: "https://github.com/kavipriyanjeevanandam/ansible-terraform.git"
     terraform_project_path: "/home/ec2-user/ansible-terraform/"
