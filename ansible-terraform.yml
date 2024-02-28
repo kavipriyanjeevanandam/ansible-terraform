@@ -2,6 +2,7 @@
 - name: Pull Terraform files from Git, Install Terraform and AWS CLI, and Run Terraform Commands
   hosts: localhost
   become: yes # To run tasks with sudo
+  become_method: sudo
   become_user: ec2-user
   tasks:
     - name: Install yum-utils
