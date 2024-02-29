@@ -4,7 +4,7 @@
   become: yes
   vars:
     git_repo_url: "https://github.com/kavipriyanjeevanandam/ansible-terraform.git"
-    terraform_project_path: "/home/ec2-user/terraform/"
+    terraform_project_path: "/home/ec2-user/tf/"
 
   tasks:
     - name: Clone Terraform Git repository
