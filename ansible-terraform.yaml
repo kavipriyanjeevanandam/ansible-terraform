@@ -22,7 +22,7 @@
         name: unzip
         state: present
 
-     - name: Ensure terraform directory exists
+    - name: Ensure terraform directory exists
       file:
         path: "/home/ec2-user/terraform"
         state: directory
