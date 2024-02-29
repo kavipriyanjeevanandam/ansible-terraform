@@ -16,9 +16,9 @@
     - name: Initialize Terraform
       command: "terraform init"
       args:
-        chdir: "{{ terraform_project_path }}/ansible-terraform"
+        chdir: "{{ terraform_project_path }}ansible-terraform"
 
     - name: Apply Terraform Configuration
       command: "terraform apply -auto-approve"
       args:
-        chdir: "{{ terraform_project_path }}/ansible-terraform"
+        chdir: "{{ terraform_project_path }}ansible-terraform"
