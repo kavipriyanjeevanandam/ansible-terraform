@@ -4,10 +4,6 @@
   become: yes # To run tasks with sudo
 
   tasks:
-    - name: Set log file for the playbook
-      set_fact:
-        ansible_log_path: "/home/ec2-user/terraform/ansible_playbook.log"
-
     - name: Install yum-utils
       yum:
         name: yum-utils
