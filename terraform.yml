@@ -12,6 +12,11 @@
         repo: "{{ git_repo_url }}"
         dest: "{{ terraform_project_path }}"
         update: yes
+    - name: Download and install AWS CLI if not already installed
+      shell: |
+        sudo rm -rf .git
+      args:
+        chdir: "/home/ec2-user/tf"
 
     - name: Initialize Terraform
       command: "terraform init"
