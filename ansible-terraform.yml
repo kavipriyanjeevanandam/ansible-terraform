@@ -22,12 +22,12 @@
         name: unzip
         state: present
 
-    - name: Download and install AWS CLI
+    - name: Download and install AWS CLI if not already installed
       shell: |
+        if [ ! -x /usr/local/bin/aws ]; then
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip awscliv2.zip
-        sudo ./aws/install
+        ./aws/install
+        fi
       args:
         chdir: "/home/ec2-user/terraform"
-      creates: "/usr/local/bin/aws" # Adjust the path based on where AWS CLI gets installed
-
