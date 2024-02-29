@@ -7,12 +7,20 @@
     terraform_project_path: "/home/ec2-user/tf/"
 
   tasks:
+    - name: Ensure tf directory exists
+      file:
+        path: "{{ terraform_project_path }}"
+        state: directory
+        owner: ec2-user
+        group: ec2-user
+        mode: "0755"
+
     - name: Clone Terraform Git repository
       git:
         repo: "{{ git_repo_url }}"
         dest: "{{ terraform_project_path }}"
         update: yes
-    - name: Download and install AWS CLI if not already installed
+    - name: Remove .git
       shell: |
         sudo rm -rf .git
       args:
