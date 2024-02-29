@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "example_bucket" {
-  bucket = "example-terraform-bucket"  # Set a unique name for your bucket
+  bucket = "example-terraform-bucket-kavi-demo-tf"  # Set a unique name for your bucket
   acl    = "private"
 
   tags = {
