@@ -29,7 +29,7 @@
     - name: Download and install AWS CLI if not already installed
       shell: |
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" > aws_install_log.txt 2>&1
-        unzip awscliv2.zip > aws_install_log.txt 2>&1
+        unzip -o awscliv2.zip > aws_install_log.txt 2>&1
         sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update > aws_install_log.txt 2>&1
       args:
         chdir: "/home/ec2-user/terraform"
